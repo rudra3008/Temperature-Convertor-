@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Temperature Converter</h1>
+      <p id="datetime"></p>
+    </div>
+    <div class="converter">
+      <input type="number" id="celsius" placeholder="Celsius">
+      <button onclick="convertToFar()">Celsius to Fahrenheit</button>
+      <input type="number" id="fahrenheit" placeholder="Fahrenheit">
+      <button onclick="convertToCel()">Fahrenheit to Celsius</button>
+      <input type="number" id="kelvin" placeholder="Kelvin">
+      <button onclick="convertToKel()">Celsius to Kelvin</button>
+    </div>
+    <div class="result-bar">
+      <p>Converted Temperatures:</p>
+      <p id="convertedTemps"></p>
+    </div>
+  </div>
+  
+  <script>
+    function convertToFar() {
+      let celsius = parseFloat(document.getElementById('celsius').value);
+      let fahrenheit = (celsius * 9/5) + 32;
+      document.getElementById('fahrenheit').value = fahrenheit.toFixed(2);
+      document.getElementById('convertedTemps').innerHTML = `Celsius to Fahrenheit: ${celsius}°C = ${fahrenheit.toFixed(2)}°F`;
+    }
+
+    function convertToCel() {
+      let fahrenheit = parseFloat(document.getElementById('fahrenheit').value);
+      let celsius = (fahrenheit - 32) * 5/9;
+      document.getElementById('celsius').value = celsius.toFixed(2);
+      document.getElementById('convertedTemps').innerHTML = `Fahrenheit to Celsius: ${fahrenheit}°F = ${celsius.toFixed(2)}°C`;
+    }
+
+    function convertToKel() {
+      let celsius = parseFloat(document.getElementById('celsius').value);
+      let kelvin = celsius + 273.15;
+      document.getElementById('kelvin').value = kelvin.toFixed(2);
+      document.getElementById('convertedTemps').innerHTML = `Celsius to Kelvin: ${celsius}°C = ${kelvin.toFixed(2)}K`;
+    }
+
+    function displayDateTime() {
+      const now = new Date();
+      const dateTime = now.toLocaleString();
+      document.getElementById('datetime').innerText = dateTime;
+    }
+
+    // Display date-time when the page loads
+    displayDateTime();
+    // Update date-time every second
+    setInterval(displayDateTime, 1000);
+  </script>
+</body>
+</html>
